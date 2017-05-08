@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+
+
+
+{% block content %}
+{% block title %}Dodaj upadlosc{% endblock %}
+
+
+
+<h1>Dodaj upadlosci</h1>
+
+<form method="POST">
+	{% csrf_token %}
+    {{ form|crispy }}
+	
+    <button  type="submit" class="btn btn-primary">Zapisz</button>
+</form >
+
+{% endblock %}

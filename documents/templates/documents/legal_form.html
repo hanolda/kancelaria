@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}Dodaj urząd{% endblock %}
+
+{% block content %}
+<div class="actions">
+    <label>Akcja: <select name="action" required="">
+<option value="" selected="selected">---------</option>
+<option value="delete_selected">Usuń wybrane urzędy</option>
+</select></label>
+    <div id="content-main">
+        <ul class="object-tools">
+            <li>
+              <a href="/admin/documents/legal/add/?_changelist_filters=o%3D2" class="addlink">
+                Dodaj urząd
+              </a>
+            </li>
+        </ul>
+    <div class="module" id="changelist">
+      <form id="changelist-form" method="post" novalidate=""><input type="hidden" name="csrfmiddlewaretoken" value="kXqxZC0oMF1sFauaCegkRbVFasDfjeZCMK1AGgC4cdXOTI0en00YcJMPXC8hPjFH">
+<div class="actions">
+    <label>Akcja: <select name="action" required="">
+<option value="" selected="selected">---------</option>
+<option value="delete_selected">Usuń wybrane urzędy</option>
+</select></label><input class="select-across" name="select_across" type="hidden" value="0">
+    <button type="submit" class="button" title="Wykonaj wybraną akcję" name="index" value="0">Wykonaj</button>
+        <span class="action-counter" data-actions-icnt="1" style="display: inline;">0 z 1 wybranych</span>
+</div>
+ <ul>
+     {% for object in object_list %}
+     <table id="result_list">
+    <thead>
+        <tr>
+            <th scope="col" class="sortable column">
+                 <div class="text"><a href="{% url 'documents:legal-detail' object.id%}">{{ object }}</a></div>
+                <div class="clear"></div>
+        </th>
+        <li><a href="{% url 'documents:legal-detail' object.id%}">{{ object }}</a></li>
+        </tr>>
+    </thead>
+     </table>
+        {% endfor %}
+     </ul>
+<div class="results">
+<table id="result_list">
+    <thead>
+        <tr>
+            <th scope="col" class="action-checkbox-column">
+                <div class="text"><span><input type="checkbox" id="action-toggle"></span></div>
+                <div class="clear"></div>
+        </th>
+        {% for object in object_list %}
+            <th scope="col" class="sortable column">
+                 <div class="text"><a href="{% url 'documents:legal-detail' object.id%}">{{ object }}</a></div>
+                <div class="clear"></div>
+        </th>
+        <li><a href="{% url 'documents:legal-detail' object.id%}">{{ object }}</a></li>
+
+        {% endfor %}
+
+        <th scope="col" class="sortable column-companyName">
+                <div class="text"><a href="?o=1.2">Urządy</a></div>
+                <div class="clear"></div>
+        </th>
+        <th scope="col" class="sortable column-name sorted ascending">
+            <div class="sortoptions">
+                <a class="sortremove" href="?o=" title="Usuń z sortowania"></a>
+                <a href="?o=-2" class="toggle ascending" title="Zmień sortowanie"></a>
+            </div>
+            <div class="text"><a href="?o=-2">Imię</a></div>
+            <div class="clear"></div>
+</th>
+<th scope="col" class="sortable column-lastname">
+   <div class="text"><a href="?o=3.2">Nazwisko</a></div>
+   <div class="clear"></div>
+</th>
+<th scope="col" class="sortable column-companyType_id">
+   <div class="text"><a href="?o=4.2">CompanyType id</a></div>
+   <div class="clear"></div>
+</th>
+<th scope="col" class="sortable column-adress_id">
+   <div class="text"><a href="?o=5.2">Adress id</a></div>
+   <div class="clear"></div>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="row1"><td class="action-checkbox"><input class="action-select" name="_selected_action" type="checkbox" value="1"></td><th class="field-companyName"><a href="/admin/documents/legal/1/change/?_changelist_filters=o%3D2">Kancelaria Syndyka</a></th><td class="field-name">Zbigniew</td><td class="field-lastname">Kubacki</td><td class="field-companyType_id nowrap">sp. z o.o.</td><td class="field-adress_id nowrap">GRUNWALDZKA, 19/1</td></tr>
+</tbody>
+</table>
+</div>
+          <p class="paginator">
+1 legal
+</p>
+     </form>
+    </div>
+  </div>
+
+<h1>Dodaj urząd</h1>
+
+<form method="POST">
+	{% csrf_token %}
+    {{ form|crispy }}
+    <button  type="submit" class="btn btn-primary">Zapisz</button>
+</form >
+
+{% endblock %}

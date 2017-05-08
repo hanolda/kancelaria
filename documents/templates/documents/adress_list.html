@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% url courts-detail object.slug %}
+
+{% block title %}Lista kontaktow{% endblock %}
+
+{% block content %}
+<div class="list-group" role="group" aria-label="...">
+    <a href="{% url 'documents:courts-list' %}" class="btn btn-default">Sądy</a>
+    <a href="{% url 'documents:contact-list' %}" class="btn btn-default">Komornicy</a>
+    <a href="{% url 'documents:legal-list' %}" class="btn btn-default">Urzędy</a>
+</div>
+
+<h1>Lista kontaktow</h1>
+ <table>
+    <tr>
+      <td>
+
+          <ul>
+              {% for object in object_list %}
+              <li><a href="{% url 'documents:contact-detail' object.id%}">{{ object }}</a></li>
+              {% endfor %}
+          </ul></div>
+      </td>
+    </tr>
+  </table>
+<a href="{% url 'documents:contact-create' %}"class="btn btn-primary" >Dodaj kontakt</a>
+
+<button type=button value="Drukuj" onClick="javascript:window.print()" class="btn btn-primary">Drukuj</button>
+<h1>
+      {{what}}
+  </h1>
+  <table>
+    <tr>
+      <td>
+        <form action="{{ request.build_absolute_uri }}upload/" method="POST" enctype="multipart/form-data">
+          <input type="file" name="file"/>
+          <br />
+          <input type="submit" value="Upload File" />
+		  <input type="button" value="Load Image" onclick="btnLoad_onclick();" />
+		  <input type="button" value="Scan Image" onclick="AcquireImage();" />
+          <input id="btnUpload" type="button" value="Upload Image" onclick="btnUpload_onclick()">
+        </form>
+      </td>
+    </tr>
+  </table>
+
+{% endblock %}

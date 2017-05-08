@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}Dodaj sąd{% endblock %}
+
+{% block content %}
+<div class="actions">
+    <label>Akcja: <select name="action" required="">
+<option value="" selected="selected">---------</option>
+<option value="delete_selected"><a href="{% url 'documents:courts-delete' object.id %}" class="btn btn-danger">Usuń wybrane sądy</option>
+</select></label>
+
+
+
+<h1>Dodaj sąd</h1>
+
+<form method="POST">
+	{% csrf_token %}
+    {{ form| crispy }}
+
+
+    <button  type="submit" class="btn btn-primary">Zapisz</button>
+    <input action="action" type="button"  class="btn btn-primary" value="Anuluj" onclick="history.go(-1);" />
+</form >
+
+{% endblock %}

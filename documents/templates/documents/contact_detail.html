@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% block title %}Szczegóły kontaktow{% endblock %}
+
+<h1>{{ object.name }}</h1>
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+<p><a href="{% url 'documents:contact-list' %}" class="btn btn-primary">Powrót do Listy kontaktow</a></p>
+<p>{{ object.id }}</p>
+<p>{{ object.name }}</p>
+{% endblock %}
+
+<!--<h1>{{ object.title }}</h1>-->
+
+<!--<p><a href="{% 'documents:contact-list' %}" class="btn btn-primary">Powrót do Listy kontaktow</a></p>-->
+
+<!--<h2>Adress</h2>-->
+<!--<ul>-->
+<!--{% for ingredient in object.ingredient_set.all %}-->
+<!--<li>{{ ingredient}}</li>-->
+<!--{% endfor %}-->
+<!--</ul>-->
+
+<!--<h2>Opis</h2>-->
+<!--<p>{{ object.description }}</p>-->

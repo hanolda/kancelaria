@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% block title %}Szczegóły urzędu{% endblock %}
+
+<h1>{{ object.name }}</h1>
+<div class="btn-group-vertical" role="group" aria-label="...">
+    <a href="{% url 'documents:contact-detail' }" class="btn btn-default">Sądy</a>
+    <a href="{% url 'documents:contact-detail' }" class="btn btn-default">Komornicy</a>
+    <a href="{% url 'documents:legal-detail' }" class="btn btn-default">Urzędy</a>
+</div>
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+<p><a href="{% url 'documents:legal-list' %}" class="btn btn-primary">Powrót do Listy urzędów</a></p>
+<p>{{ object.id }}</p>
+<p>{{ object.name }}</p>
+{% endblock %}

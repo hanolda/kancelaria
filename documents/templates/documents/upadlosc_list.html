@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Lista upadlosci{% endblock %}
+
+{% block content %}
+<h1>Lista upadlych</h1>
+<ul>
+{% for object in object_list %}
+<li><a href="{% url 'documents:upadlosc-detail' object.id%}">{{ object }}</a></li>
+{% endfor %}
+</ul>
+<a href="{% url 'documents:upadlosc-create' %}"class="btn btn-primary" >Dodaj upadlosc</a>
+
+<button type=button value="Drukuj" onClick="javascript:window.print()" class="btn btn-primary">Drukuj</button>
+<h1>
+      {{what}}
+  </h1>
+  <table>
+    <tr>
+      <td>
+        <form action="{{ request.build_absolute_uri }}upload/" method="POST" enctype="multipart/form-data">
+          <input type="file" name="file"/>
+          <br />
+          <input type="submit" value="Upload File" />
+		  <input type="button" value="Load Image" onclick="btnLoad_onclick();" />
+		  <input type="button" value="Scan Image" onclick="AcquireImage();" />
+          <input id="btnUpload" type="button" value="Upload Image" onclick="btnUpload_onclick()">
+        </form>
+      </td>
+    </tr>
+  </table>
+
+{% endblock %}

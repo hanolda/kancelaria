@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Lista sądów{% endblock %}
+
+{% block content %}
+<script src="{% static 'Search.js' %}"></script>
+
+<div class="list-group" role="group" aria-label="...">
+    <a href="{% url 'documents:courts-list' %}" class="btn btn-default">Sądy</a>
+    <a href="{% url 'documents:contact-list' %}" class="btn btn-default">Komornicy</a>
+    <a href="{% url 'documents:legal-list' %}" class="btn btn-default">Urzędy</a>
+</div>
+
+
+<form class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Szukaj">
+  <button type="submit" class="btn btn-default">Szukaj</button></div>
+</form>
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Szukaj nazwy..">
+
+
+<div align="right">
+<a href="{% url 'documents:courts-create' %}" > <button type="button" class="btn btn-primary " > Dodaj sąd <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button></a>
+</div>
+<h1>Lista sądów</h1>
+ <table class="table table-striped" id="myTable">
+     <thead >
+     <tr class="bg-primary">
+        <td ><input class="action-select" name="_selected_action" type="checkbox" value="1"></td>
+        <th scope="col" class="sortable colun">Nazwa Sądu</th>
+        <td >Wydział</td>
+        <td >strona www</td>
+        <td >Adres siedziby</td>
+
+    </tr>
+     </thead>
+
+     <tbody>
+     {% for object in object_list %}
+     <tr class="row1">
+
+        <td class="action-checkbox"><input class="action-select" name="_selected_action" type="checkbox" value="1"></td>
+        <td class="field-companyName"><a href="{% url 'documents:courts-detail' object.id%}">{{ object.companyName }}</a></td>
+         <!--<th class="field-companyName"><a href="{% url 'documents:courts-update' object.id%}">{{ object.companyName }}</a></th>-->
+        <td class="field-department">{{ object.department }}</td>
+        <td class="field-www nowrap">{{ object.www }}</td>
+        <td class="field-adress_id nowrap">{{ object.adress_id }}</td>
+
+    </tr>{% endfor %}
+</tbody>
+
+  </table>
+
+
+<button type=button value="Drukuj" onClick="javascript:window.print()" class="btn btn-primary">Drukuj</button>
+<h1>
+      {{what}}
+  </h1>
+  <table>
+    <tr>
+      <td>
+        <form action="{{ request.build_absolute_uri }}upload/" method="POST" enctype="multipart/form-data">
+          <input type="file" name="file"/>
+          <br />
+          <input type="submit" value="Upload File" />
+		  <input type="button" value="Load Image" onclick="btnLoad_onclick();" />
+		  <input type="button" value="Scan Image" onclick="AcquireImage();" />
+          <input id="btnUpload" type="button" value="Upload Image" onclick="btnUpload_onclick()">
+        </form>
+      </td>
+    </tr>
+  </table>
+{% endblock %}

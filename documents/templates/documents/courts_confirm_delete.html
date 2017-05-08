@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}UsuN obiekt{% endblock %}
+
+{% block content %}
+<h1>Usuń obiekt</h1>
+
+<h2>Czy chcesz usunąć {{ object }}?</h2>
+
+<p>Wpis zastanie trwale usunięty.</p>
+
+<form method="post">{% csrf_token %}
+    <button type="submit" class="btn btn-danger">Usuń</button>
+    <input action="action" type="button"  class="btn btn-primary" value="Anuluj" onclick="history.go(-1);" />
+</form>
+
+{% endblock %}

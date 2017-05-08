@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}Dodaj kontakt{% endblock %}
+
+{% block content %}
+<h1>Dodaj kontakt</h1>
+
+<form method="POST">
+	{% csrf_token %}
+    {{ form|crispy }}
+    <button  type="submit" class="btn btn-primary">Zapisz</button>
+</form >
+
+{% endblock %}
