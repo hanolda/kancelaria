@@ -33,7 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
 	'attachments.apps.AttachmentsConfig',
 	'documents.apps.DocumentsConfig',
-	'polls.apps.PollsConfig',
+	#'polls.apps.PollsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
